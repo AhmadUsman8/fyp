@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ServiCare</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account_click_here">Already have an account? Click here</string>
+    <string name="register">Register</string>
+    <string name="email"> Email</string>
+    <string name="password"> Password</string>
+
+    <string-array name="options">
+        <item>-Select-</item>
+        <item>User</item>
+        <item>Service Provider</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_inbox">Inbox</string>
+    <string name="title_search">Search</string>
+    <string name="title_jobs">Jobs</string>
+    <string name="title_profile">Profile</string>
+</resources>

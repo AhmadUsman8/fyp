@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserFragments.ProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:background="@color/my_red">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="61dp"
+            android:layout_height="58dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/profile_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/profile_image"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:text="Your Name Here"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.347" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/full_name"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="13dp"
+            android:layout_toRightOf="@+id/profile_image"
+            android:includeFontPadding="false"
+            android:text="username@gmail.com"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/full_name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/full_name"
+            app:layout_constraintTop_toBottomOf="@+id/full_name"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/manageJobs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Jobs"
+            android:textColor="@color/my_red"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.14" />
+
+        <TextView
+            android:id="@+id/postjob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="   Post a Job"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_post_add_24"
+            app:layout_constraintEnd_toEndOf="@+id/manageJobs"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/manageJobs"
+            app:layout_constraintTop_toBottomOf="@+id/manageJobs" />
+
+        <TextView
+            android:id="@+id/viewJob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="   View Jobs"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_view_carousel_24"
+            app:layout_constraintEnd_toEndOf="@+id/postjob"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/postjob"
+            app:layout_constraintTop_toBottomOf="@+id/postjob" />
+
+        <TextView
+            android:id="@+id/general"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="General"
+            android:textColor="@color/my_red"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.391" />
+
+        <TextView
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="   Settings"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_settings_24"
+            app:layout_constraintEnd_toEndOf="@+id/general"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/general"
+            app:layout_constraintTop_toBottomOf="@+id/general" />
+
+        <TextView
+            android:id="@+id/payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="   Payments"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_payment_24"
+            app:layout_constraintEnd_toEndOf="@+id/settings"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settings"
+            app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+        <TextView
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="   Invite friends"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_share_24"
+            app:layout_constraintEnd_toEndOf="@+id/payment"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/payment"
+            app:layout_constraintTop_toBottomOf="@+id/payment" />
+
+        <TextView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="   Rate App"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_star_half_24"
+            app:layout_constraintEnd_toEndOf="@+id/share"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/share"
+            app:layout_constraintTop_toBottomOf="@+id/share" />
+
+        <TextView
+            android:id="@+id/support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="   Support"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_contact_support_24"
+            app:layout_constraintEnd_toEndOf="@+id/rate"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rate"
+            app:layout_constraintTop_toBottomOf="@+id/rate" />
+
+        <TextView
+            android:id="@+id/Logout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textColor="@color/my_red"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.795" />
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="   Log out"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_vpn_key_24"
+            app:layout_constraintEnd_toEndOf="@+id/Logout1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/Logout1"
+            app:layout_constraintTop_toBottomOf="@+id/Logout1" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/toggleButton"
+            android:layout_width="354dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="28dp"
+            android:text="Become a service provider"
+            android:textStyle="bold"
+            android:thumb="@drawable/switch_thumb"
+            app:track="@drawable/switch_track"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.appcompat.widget.SwitchCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

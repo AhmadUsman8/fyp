@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/bg_btn.xml" value="0.11944444444444445" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/border.xml" value="0.18611111111111112" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/ic_splash.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/rounded_border_edittext.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/switch_thumb.xml" value="0.1787037037037037" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/switch_track.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/font/coustard.xml" value="0.2101851851851852" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout-v28/fragment_search.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_forgot_password.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_login.xml" value="0.12" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_register_sp.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/activity_user_profile.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_inbox.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_jobs.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_search.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_home.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_inbox.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_manage_jobs.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_profile.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_home.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_inbox.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_jobs.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_profile.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_search.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/rounded_border_edittext.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/seller_bottom_navbar.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/user_bottom_navbar.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/menu/search_menu.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/menu/seller_bottom_navmenu.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/menu/user_bottom_navmenu.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/menu/user_profile_menu.xml" value="0.184375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
