@@ -75,55 +75,55 @@ public class RegisterSP extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void registerServiceProvider(){
-        String mName=name.getText().toString().trim();
-        String mService=service.getText().toString().trim();
-        String email=inputEmail.getText().toString().trim();
-        String phone=phoneNo.getText().toString().trim();
-        String password=inputPassword.getText().toString().trim();
-        String conpassword=confirmPassword.getText().toString().trim();
+    private void registerServiceProvider() {
+        String mName = name.getText().toString().trim();
+        String mService = service.getText().toString().trim();
+        String email = inputEmail.getText().toString().trim();
+        String phone = phoneNo.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
+        String conpassword = confirmPassword.getText().toString().trim();
 
-        if (mName.isEmpty()){
+        if (mName.isEmpty()) {
             name.setError("Please enter name");
             name.requestFocus();
             return;
         }
-        if (mService.isEmpty()){
+        if (mService.isEmpty()) {
             service.setError("Please enter service name");
             service.requestFocus();
             return;
         }
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             inputEmail.setError("Please enter email");
             inputEmail.requestFocus();
             return;
         }
-        if (!email.contains("@gmail.com")){
+        if (!email.contains("@gmail.com")) {
             inputEmail.setError("Please enter valid email address");
             inputEmail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             inputEmail.setError("Please enter valid email address");
             inputEmail.requestFocus();
             return;
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             inputPassword.setError("Please enter password");
             inputPassword.requestFocus();
             return;
         }
-        if (phone.isEmpty()){
+        if (phone.isEmpty()) {
             phoneNo.setError("Please enter phone number");
             phoneNo.requestFocus();
             return;
         }
-        if(password.length()<6){
+        if (password.length() < 6) {
             inputPassword.setError("At least 6 characters long");
             inputPassword.requestFocus();
             return;
         }
-        if(!conpassword.equals(password)){
+        if (!conpassword.equals(password)) {
             confirmPassword.setError("Password doesn't match");
             confirmPassword.requestFocus();
             return;
@@ -160,13 +160,9 @@ public class RegisterSP extends AppCompatActivity {
 
                             Toast.makeText(RegisterSP.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             serviceProviderID = mAuth.getCurrentUser().getUid();
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("name", mName);
-                            user.put("service", mService);
-                            user.put("email", email);
-                            user.put("phone",phone);
-                            fstore.collection("service providers")
-                                    .document(serviceProviderID).set(user)
+                            WorkerData workerData = new WorkerData(mName, null, email, phone);
+                            fstore.collection("users")
+                                    .document(serviceProviderID).set(workerData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {

@@ -1,16 +1,25 @@
 package com.example.fyp.SignUp;
 
 
-public class RegisterData {
-    public String fname,lname,email;
+import java.io.Serializable;
 
-    public RegisterData(){}
+public class UserData implements Serializable {
+    private String fname,lname,email,type="user";
 
-    public RegisterData(String fname,String lname,String email){
-        //this.choice=choice;
-        this.fname=fname;
-        this.lname=lname;
-        this.email=email;
+    public UserData(){}
+
+    public UserData(String fname, String lname, String email) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getFname() {

@@ -165,12 +165,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             userID = mAuth.getCurrentUser().getUid();
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("fname", fname);
-                            user.put("lname", lname);
-                            user.put("email", email);
+                            UserData userData=new UserData(fname,lname,email);
                             fstore.collection("users")
-                                    .document(userID).set(user)
+                                    .document(userID).set(userData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {

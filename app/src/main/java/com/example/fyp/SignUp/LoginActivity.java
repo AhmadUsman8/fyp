@@ -17,16 +17,20 @@ import com.example.fyp.Dashboards.SellerDashboard;
 import com.example.fyp.R;
 import com.example.fyp.Dashboards.UserDashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity{
     TextView createNewAccount,forgotPassword;
     Button btnLogin;
     private EditText inputEmail,inputPassword;
     FirebaseAuth mAuth;
+    FirebaseFirestore fstore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class LoginActivity extends AppCompatActivity{
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
         mAuth=FirebaseAuth.getInstance();
+        fstore=FirebaseFirestore.getInstance();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +112,24 @@ public class LoginActivity extends AppCompatActivity{
                     }
 
                     else {
-                        Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
-                        startActivity(intent);
-                        finish();
+                        fstore.collection("users")
+                                .document(mAuth.getCurrentUser().getUid()).
+                                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                UserData userData=documentSnapshot.toObject(UserData.class);
+                                if(userData.getType().equals("user")){
+                                    Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, SellerDashboard.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            }
+                        });
                     }
                 }
                 else{

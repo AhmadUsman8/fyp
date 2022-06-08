@@ -19,6 +19,12 @@ import com.example.fyp.Dashboards.SellerDashboard;
 import com.example.fyp.Dashboards.UserDashboard;
 import com.example.fyp.R;
 import com.example.fyp.SignUp.LoginActivity;
+import com.example.fyp.SignUp.UserData;
+import com.example.fyp.SignUp.WorkerData;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
@@ -30,8 +36,9 @@ import org.w3c.dom.Text;
 public class SellerProfileFragment extends Fragment {
     TextView mUserRequests,mManageServices,mEarnings;
     TextView mMyProfile,mPayments,mSettings,mRate,mSupport;
-    TextView mLogout;
+    TextView mLogout,mFullName,mDisplayEmail;
     SwitchCompat mToogleButton;
+    FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,10 +90,12 @@ public class SellerProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mFullName=view.findViewById(R.id.full_name);
+        mDisplayEmail=view.findViewById(R.id.displayEmail);
         mManageServices=view.findViewById(R.id.manageServices);
         mUserRequests=view.findViewById(R.id.userRequests);
         mEarnings=view.findViewById(R.id.earnings);
-
         mMyProfile=view.findViewById(R.id.myProfile);
         mPayments=view.findViewById(R.id.payment);
         mSettings=view.findViewById(R.id.settings);
@@ -123,7 +132,9 @@ public class SellerProfileFragment extends Fragment {
         });
         mLogout.setOnClickListener(v -> {
             //Toast.makeText(requireActivity().getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
-            Intent intent= new Intent(requireActivity().getApplicationContext(), LoginActivity.class);
+            mAuth.signOut();
+            Intent intent = new Intent(requireActivity().getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
 
@@ -135,6 +146,17 @@ public class SellerProfileFragment extends Fragment {
                     Intent intent = new Intent(requireActivity().getApplicationContext(), UserDashboard.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        FirebaseFirestore.getInstance().collection("users")
+                .document(mAuth.getCurrentUser().getUid()).
+                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                WorkerData workerData = documentSnapshot.toObject(WorkerData.class);
+                mFullName.setText(workerData.getFname());
+                mDisplayEmail.setText(workerData.getEmail());
             }
         });
     }

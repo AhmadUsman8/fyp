@@ -1,14 +1,28 @@
 package com.example.fyp.UserFragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.fyp.CreateJob;
 import com.example.fyp.R;
+import com.example.fyp.SignUp.RegisterActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +30,12 @@ import com.example.fyp.R;
  * create an instance of this fragment.
  */
 public class JobsFragment extends Fragment {
+
+    EditText mTitle, mDescription, mBudget;
+    Button mCreateJob;
+    FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,4 +83,62 @@ public class JobsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_jobs, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mTitle = view.findViewById(R.id.title);
+        mDescription = view.findViewById(R.id.description);
+        mBudget = view.findViewById(R.id.budget);
+        mCreateJob = view.findViewById(R.id.createJob);
+
+        mCreateJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postJob();
+            }
+        });
+    }
+
+    private void postJob() {
+        if (mTitle.getText().toString().trim().isEmpty()) {
+            mTitle.setError("Please enter first name");
+            mTitle.requestFocus();
+            return;
+        }
+        if (mDescription.getText().toString().trim().isEmpty()) {
+            mDescription.setError("Please enter first name");
+            mDescription.requestFocus();
+            return;
+        }
+        if (mBudget.getText().toString().trim().isEmpty()) {
+            mBudget.setError("Please enter first name");
+            mBudget.requestFocus();
+            return;
+        }
+
+        final ProgressDialog progressDialog = new ProgressDialog(this.getContext());
+        progressDialog.setMessage("Processing...");
+        progressDialog.show();
+
+        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim());
+
+        fstore.collection("Jobs").add(job).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(requireActivity().getApplicationContext(), "Job Posted", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(requireActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        });
+
+    }
+
 }
