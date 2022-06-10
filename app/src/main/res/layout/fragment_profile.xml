@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:id="@+id/profile"
     android:layout_height="match_parent"
     tools:context=".UserFragments.ProfileFragment">
 
@@ -77,16 +78,16 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.14" />
+            app:layout_constraintVertical_bias="0.063" />
 
         <TextView
             android:id="@+id/postjob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:text="   Post a Job"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_post_add_24"
@@ -99,7 +100,7 @@
             android:id="@+id/viewJob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:text="   View Jobs"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_view_carousel_24"
@@ -121,7 +122,7 @@
             app:layout_constraintHorizontal_bias="0.049"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.391" />
+            app:layout_constraintVertical_bias="0.334" />
 
         <TextView
             android:id="@+id/settings"
@@ -140,7 +141,7 @@
             android:id="@+id/payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:text="   Payments"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_payment_24"
@@ -153,7 +154,7 @@
             android:id="@+id/share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:text="   Invite friends"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_share_24"
@@ -166,7 +167,7 @@
             android:id="@+id/rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:text="   Rate App"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_star_half_24"
@@ -179,7 +180,7 @@
             android:id="@+id/support"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:text="   Support"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_contact_support_24"
@@ -216,21 +217,21 @@
             app:layout_constraintStart_toStartOf="@+id/Logout1"
             app:layout_constraintTop_toBottomOf="@+id/Logout1" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/toggleButton"
-            android:layout_width="354dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="28dp"
-            android:text="Become a service provider"
-            android:textStyle="bold"
-            android:thumb="@drawable/switch_thumb"
-            app:track="@drawable/switch_track"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.28"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--        <androidx.appcompat.widget.SwitchCompat-->
+<!--            android:id="@+id/toggleButton"-->
+<!--            android:layout_width="354dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:text="Become a service provider"-->
+<!--            android:textStyle="bold"-->
+<!--            android:thumb="@drawable/switch_thumb"-->
+<!--            app:track="@drawable/switch_track"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.28"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-        </androidx.appcompat.widget.SwitchCompat>
+<!--        </androidx.appcompat.widget.SwitchCompat>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

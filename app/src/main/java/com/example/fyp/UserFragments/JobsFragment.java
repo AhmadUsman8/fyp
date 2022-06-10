@@ -31,7 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class JobsFragment extends Fragment {
 
-    EditText mTitle, mDescription, mBudget;
+    EditText mTitle, mDescription, mBudget, mTime;
     Button mCreateJob;
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
@@ -91,6 +91,7 @@ public class JobsFragment extends Fragment {
         mTitle = view.findViewById(R.id.title);
         mDescription = view.findViewById(R.id.description);
         mBudget = view.findViewById(R.id.budget);
+        mTime=view.findViewById(R.id.time);
         mCreateJob = view.findViewById(R.id.createJob);
 
         mCreateJob.setOnClickListener(new View.OnClickListener() {
@@ -103,18 +104,23 @@ public class JobsFragment extends Fragment {
 
     private void postJob() {
         if (mTitle.getText().toString().trim().isEmpty()) {
-            mTitle.setError("Please enter first name");
+            mTitle.setError("Please enter title");
             mTitle.requestFocus();
             return;
         }
         if (mDescription.getText().toString().trim().isEmpty()) {
-            mDescription.setError("Please enter first name");
+            mDescription.setError("Please enter description");
             mDescription.requestFocus();
             return;
         }
         if (mBudget.getText().toString().trim().isEmpty()) {
-            mBudget.setError("Please enter first name");
+            mBudget.setError("Please enter budget");
             mBudget.requestFocus();
+            return;
+        }
+        if (mTime.getText().toString().trim().isEmpty()) {
+            mTime.setError("Please enter time");
+            mTime.requestFocus();
             return;
         }
 
@@ -122,13 +128,14 @@ public class JobsFragment extends Fragment {
         progressDialog.setMessage("Processing...");
         progressDialog.show();
 
-        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim());
+        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim());
 
-        fstore.collection("Jobs").add(job).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        fstore.collection("jobs").add(job).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(requireActivity().getApplicationContext(), "Job Posted", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+                JobsFragment.this.getActivity().getSupportFragmentManager().popBackStackImmediate();
             }
 
         }).addOnFailureListener(new OnFailureListener() {

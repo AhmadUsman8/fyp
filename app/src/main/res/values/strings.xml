@@ -24,4 +24,5 @@
     <string name="enter_job_title">Enter job title</string>
     <string name="description">Description</string>
     <string name="budget">Budget</string>
+    <string name="time">Time</string>
 </resources>

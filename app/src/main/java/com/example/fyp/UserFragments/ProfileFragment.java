@@ -58,13 +58,13 @@ public class ProfileFragment extends Fragment {
         mSupport = view.findViewById(R.id.support);
         mLogout = view.findViewById(R.id.logout);
 
-        mToogleButton = view.findViewById(R.id.toggleButton);
-
         mPostJob.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Post Job", Toast.LENGTH_SHORT).show();
+            this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.profile, new JobsFragment()).commit();
+            //Toast.makeText(requireActivity().getApplicationContext(), "Post Job", Toast.LENGTH_SHORT).show();
         });
         mViewJob.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "View Jobs", Toast.LENGTH_SHORT).show();
+            this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.profile, new displayJobs()).commit();
+            //Toast.makeText(requireActivity().getApplicationContext(), "View Jobs", Toast.LENGTH_SHORT).show();
         });
         mSettings.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
@@ -89,16 +89,16 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
 
-        mToogleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()) {
-                    Toast.makeText(requireActivity().getApplicationContext(), "Seller mode ON", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(requireActivity().getApplicationContext(), SellerDashboard.class);
-                    startActivity(intent);
-                }
-            }
-        });
+//        mToogleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (buttonView.isChecked()) {
+//                    Toast.makeText(requireActivity().getApplicationContext(), "Seller mode ON", Toast.LENGTH_LONG).show();
+//                    Intent intent = new Intent(requireActivity().getApplicationContext(), SellerDashboard.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
 
         FirebaseFirestore.getInstance().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).

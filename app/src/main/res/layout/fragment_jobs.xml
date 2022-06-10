@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/postjob"
     tools:context=".UserFragments.JobsFragment">
 
 <!--    <TextView-->
@@ -25,13 +26,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:layout_marginTop="20dp"
+        android:background="@drawable/border"
         android:hint="@string/enter_job_title"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:id="@+id/description"
         android:layout_marginTop="65dp"
+        android:background="@drawable/border"
         android:hint="@string/description"/>
 
 
@@ -40,7 +43,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="370dp"
+        android:background="@drawable/border"
         android:hint="@string/budget" />
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="410dp"
+        android:background="@drawable/border"
+        android:hint="@string/time" />
 
     <Button
         android:id="@+id/createJob"
@@ -49,6 +61,7 @@
         android:layout_marginStart="150dp"
         android:layout_marginTop="510dp"
         android:layout_marginEnd="90dp"
+        android:backgroundTint="#A00000"
         android:hint="@string/create_job"
         android:textSize="18sp" />
 

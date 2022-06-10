@@ -13,6 +13,7 @@ import com.example.fyp.UserFragments.InboxFragment;
 import com.example.fyp.UserFragments.JobsFragment;
 import com.example.fyp.UserFragments.ProfileFragment;
 import com.example.fyp.UserFragments.SearchFragment;
+import com.example.fyp.UserFragments.displayJobs;
 import com.example.fyp.databinding.UserBottomNavbarBinding;
 
 public class UserDashboard extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class UserDashboard extends AppCompatActivity {
                     replaceFragment(new SearchFragment());
                     break;
                 case R.id.user_jobs:
-                    replaceFragment(new JobsFragment());
+                    replaceFragment(new displayJobs());
                     break;
                 case R.id.user_profile:
                     replaceFragment(new ProfileFragment());

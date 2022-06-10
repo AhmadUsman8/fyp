@@ -37,7 +37,6 @@ public class SellerProfileFragment extends Fragment {
     TextView mUserRequests,mManageServices,mEarnings;
     TextView mMyProfile,mPayments,mSettings,mRate,mSupport;
     TextView mLogout,mFullName,mDisplayEmail;
-    SwitchCompat mToogleButton;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
     // TODO: Rename parameter arguments, choose names that match
@@ -104,8 +103,6 @@ public class SellerProfileFragment extends Fragment {
 
         mLogout=view.findViewById(R.id.logout);
 
-        mToogleButton=view.findViewById(R.id.toggleButton);
-
         mUserRequests.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "User Requests", Toast.LENGTH_SHORT).show();
         });
@@ -138,16 +135,6 @@ public class SellerProfileFragment extends Fragment {
             startActivity(intent);
         });
 
-        mToogleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(buttonView.isChecked()){
-                    Toast.makeText(requireActivity().getApplicationContext(), "User mode ON", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(requireActivity().getApplicationContext(), UserDashboard.class);
-                    startActivity(intent);
-                }
-            }
-        });
 
         FirebaseFirestore.getInstance().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).

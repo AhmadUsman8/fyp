@@ -25,12 +25,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class LoginActivity extends AppCompatActivity{
-    TextView createNewAccount,forgotPassword;
+public class LoginActivity extends AppCompatActivity {
+    TextView createNewAccount, forgotPassword;
     Button btnLogin;
-    private EditText inputEmail,inputPassword;
+    private EditText inputEmail, inputPassword;
     FirebaseAuth mAuth;
     FirebaseFirestore fstore;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() != null)
+            checkAndLogin();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +45,12 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
 
         createNewAccount = (TextView) findViewById(R.id.createNewAccount);
-        forgotPassword=(TextView) findViewById(R.id.forgotPassword);
+        forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
-        mAuth=FirebaseAuth.getInstance();
-        fstore=FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,31 +73,32 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
     }
-    private void loginUser(){
-        String email=inputEmail.getText().toString().trim();
-        String password=inputPassword.getText().toString().trim();
 
-        if (email.isEmpty()){
+    private void loginUser() {
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
+
+        if (email.isEmpty()) {
             inputEmail.setError("Please enter email");
             inputEmail.requestFocus();
             return;
         }
-        if (!email.contains("@gmail.com")){
+        if (!email.contains("@gmail.com")) {
             inputEmail.setError("Incorrect");
             inputEmail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             inputEmail.setError("Incorrect");
             inputEmail.requestFocus();
             return;
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             inputPassword.setError("Please enter password");
             inputPassword.requestFocus();
             return;
         }
-        if(password.length()<6){
+        if (password.length() < 6) {
             inputPassword.setError("Incorrect");
             inputPassword.requestFocus();
             return;
@@ -100,40 +108,40 @@ public class LoginActivity extends AppCompatActivity{
         progressDialog.setMessage("Logging in...");
         progressDialog.show();
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
-                if(task.isSuccessful()) {
+                if (task.isSuccessful()) {
                     FirebaseUser validEmail = FirebaseAuth.getInstance().getCurrentUser();
                     if (!validEmail.isEmailVerified()) {
                         validEmail.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Check your email to verify your account", Toast.LENGTH_LONG).show();
+                    } else {
+                        checkAndLogin();
                     }
-
-                    else {
-                        fstore.collection("users")
-                                .document(mAuth.getCurrentUser().getUid()).
-                                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                UserData userData=documentSnapshot.toObject(UserData.class);
-                                if(userData.getType().equals("user")){
-                                    Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                }
-                                else{
-                                    Intent intent = new Intent(LoginActivity.this, SellerDashboard.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                }
-                            }
-                        });
-                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, "Incorrect credentials", Toast.LENGTH_LONG).show();
                 }
-                else{
-                    Toast.makeText(LoginActivity.this,"Incorrect credentials",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void checkAndLogin() {
+        fstore.collection("users")
+                .document(mAuth.getCurrentUser().getUid()).
+                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserData userData = documentSnapshot.toObject(UserData.class);
+                if (userData.getType().equals("user")) {
+                    Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, SellerDashboard.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
             }
         });
