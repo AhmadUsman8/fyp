@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
+    tools:context=".SettingsFragment">
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/updateImage"-->
+<!--        android:layout_width="61dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:src="@drawable/profile_image"-->
+<!--        tools:ignore="SpeakableTextPresentCheck" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/updateUsername"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="196dp"-->
+<!--        android:background="@drawable/border"-->
+<!--        android:hint="Usenname"-->
+<!--        android:minHeight="48dp" />-->
+
+    <EditText
+        android:id="@+id/updatePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="@string/new_password"
+        android:background="@drawable/border"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/confirmUpdatedPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/border"
+        android:hint="@string/confirm_password"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:text="cancel" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="450dp"
+        android:layout_marginRight="20dp"
+        android:text="update" />
+
+
+</FrameLayout>

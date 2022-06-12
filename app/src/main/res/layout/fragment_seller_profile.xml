@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/profile"
+    android:layout_height="match_parent"
+    tools:context=".SellerFragments.SellerProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="149dp"
+        android:layout_height="220dp"
         android:background="@color/my_red">
 
         <ImageView
             android:id="@+id/profile_image"
-            android:layout_width="61dp"
-            android:layout_height="58dp"
+            android:layout_width="91dp"
+            android:layout_height="94dp"
             android:layout_centerVertical="true"
             android:src="@drawable/profile_image"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -25,8 +27,8 @@
 
         <TextView
             android:id="@+id/full_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="222dp"
+            android:layout_height="41dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/profile_image"
             android:fontFamily="sans-serif"
@@ -36,17 +38,17 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintHorizontal_bias="0.181"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.347" />
+            app:layout_constraintVertical_bias="0.45" />
 
         <TextView
+            android:id="@+id/displayEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/full_name"
             android:layout_centerVertical="true"
-            android:id="@+id/displayEmail"
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@+id/profile_image"
             android:includeFontPadding="false"
@@ -66,75 +68,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <androidx.appcompat.widget.SwitchCompat-->
-<!--            android:id="@+id/toggleButton"-->
-<!--            android:layout_width="354dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="Switch to User mode"-->
-<!--            android:textStyle="bold"-->
-<!--            android:thumb="@drawable/switch_thumb"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.28"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:track="@drawable/switch_track">-->
-
-<!--        </androidx.appcompat.widget.SwitchCompat>-->
-
-        <TextView
-            android:id="@+id/myServicare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My serviCare."
-            android:textColor="@color/my_red"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.068"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.073" />
-
-        <TextView
-            android:id="@+id/userRequests"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="   User requests"
-            android:textSize="20sp"
-            app:drawableLeftCompat="@drawable/ic_baseline_post_add_24"
-            app:layout_constraintEnd_toEndOf="@+id/myServicare"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/myServicare"
-            app:layout_constraintTop_toBottomOf="@+id/myServicare" />
-
-        <TextView
-            android:id="@+id/manageServices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="   Manage services"
-            android:textSize="20sp"
-            app:drawableLeftCompat="@drawable/ic_baseline_view_carousel_24"
-            app:layout_constraintEnd_toEndOf="@+id/userRequests"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/userRequests"
-            app:layout_constraintTop_toBottomOf="@+id/userRequests" />
-
-        <TextView
-            android:id="@+id/earnings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="   Earnings"
-            android:textSize="20sp"
-            app:drawableLeftCompat="@drawable/ic_baseline_monetization_on_24"
-            app:layout_constraintEnd_toEndOf="@+id/manageServices"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/manageServices"
-            app:layout_constraintTop_toBottomOf="@+id/manageServices" />
 
         <TextView
             android:id="@+id/general"
@@ -149,46 +82,34 @@
             app:layout_constraintHorizontal_bias="0.049"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38" />
-
-        <TextView
-            android:id="@+id/myProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="   My profile"
-            android:textSize="20sp"
-            app:drawableLeftCompat="@drawable/ic_baseline_person_24"
-            app:layout_constraintEnd_toEndOf="@+id/general"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/general"
-            app:layout_constraintTop_toBottomOf="@+id/general" />
-
-        <TextView
-            android:id="@+id/payment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="   Payments"
-            android:textSize="20sp"
-            app:drawableLeftCompat="@drawable/ic_baseline_payment_24"
-            app:layout_constraintEnd_toEndOf="@+id/myProfile"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/myProfile"
-            app:layout_constraintTop_toBottomOf="@+id/myProfile" />
+            app:layout_constraintVertical_bias="0.071" />
 
         <TextView
             android:id="@+id/settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="   Settings"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_settings_24"
-            app:layout_constraintEnd_toEndOf="@+id/payment"
+            app:layout_constraintEnd_toEndOf="@+id/general"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/payment"
-            app:layout_constraintTop_toBottomOf="@+id/payment" />
+            app:layout_constraintStart_toStartOf="@+id/general"
+            app:layout_constraintTop_toBottomOf="@+id/general" />
+
+
+
+        <TextView
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="   Invite friends"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_share_24"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settings"
+            app:layout_constraintTop_toBottomOf="@+id/settings" />
 
         <TextView
             android:id="@+id/rate"
@@ -198,10 +119,10 @@
             android:text="   Rate App"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_baseline_star_half_24"
-            app:layout_constraintEnd_toEndOf="@+id/settings"
+            app:layout_constraintEnd_toEndOf="@+id/share"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/settings"
-            app:layout_constraintTop_toBottomOf="@+id/settings" />
+            app:layout_constraintStart_toStartOf="@+id/share"
+            app:layout_constraintTop_toBottomOf="@+id/share" />
 
         <TextView
             android:id="@+id/support"
@@ -229,20 +150,36 @@
             app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.806" />
+            app:layout_constraintVertical_bias="0.527" />
 
         <TextView
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   Log out"
-            app:drawableLeftCompat="@drawable/ic_baseline_vpn_key_24"
-            android:textSize="20sp"
             android:layout_marginTop="8dp"
+            android:text="   Log out"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_vpn_key_24"
             app:layout_constraintEnd_toEndOf="@+id/Logout1"
-            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/Logout1"
             app:layout_constraintTop_toBottomOf="@+id/Logout1" />
+
+        <!--        <androidx.appcompat.widget.SwitchCompat-->
+        <!--            android:id="@+id/toggleButton"-->
+        <!--            android:layout_width="354dp"-->
+        <!--            android:layout_height="35dp"-->
+        <!--            android:layout_marginTop="28dp"-->
+        <!--            android:text="Become a service provider"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:thumb="@drawable/switch_thumb"-->
+        <!--            app:track="@drawable/switch_track"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.28"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--        </androidx.appcompat.widget.SwitchCompat>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

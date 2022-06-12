@@ -18,9 +18,13 @@ import android.widget.Toast;
 import com.example.fyp.Dashboards.SellerDashboard;
 import com.example.fyp.Dashboards.UserDashboard;
 import com.example.fyp.R;
+import com.example.fyp.SettingsFragment;
 import com.example.fyp.SignUp.LoginActivity;
 import com.example.fyp.SignUp.UserData;
 import com.example.fyp.SignUp.WorkerData;
+import com.example.fyp.UserFragments.RatingFragment;
+import com.example.fyp.UserFragments.RatingFragment;
+import com.example.fyp.UserFragments.SupportFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -34,8 +38,7 @@ import org.w3c.dom.Text;
  * create an instance of this fragment.
  */
 public class SellerProfileFragment extends Fragment {
-    TextView mUserRequests,mManageServices,mEarnings;
-    TextView mMyProfile,mPayments,mSettings,mRate,mSupport;
+    TextView mShare,mSettings,mRate,mSupport;
     TextView mLogout,mFullName,mDisplayEmail;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
@@ -92,49 +95,41 @@ public class SellerProfileFragment extends Fragment {
 
         mFullName=view.findViewById(R.id.full_name);
         mDisplayEmail=view.findViewById(R.id.displayEmail);
-        mManageServices=view.findViewById(R.id.manageServices);
-        mUserRequests=view.findViewById(R.id.userRequests);
-        mEarnings=view.findViewById(R.id.earnings);
-        mMyProfile=view.findViewById(R.id.myProfile);
-        mPayments=view.findViewById(R.id.payment);
+        mShare=view.findViewById(R.id.share);
         mSettings=view.findViewById(R.id.settings);
         mRate=view.findViewById(R.id.rate);
         mSupport=view.findViewById(R.id.support);
 
         mLogout=view.findViewById(R.id.logout);
 
-        mUserRequests.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "User Requests", Toast.LENGTH_SHORT).show();
-        });
-        mManageServices.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Manage Services", Toast.LENGTH_SHORT).show();
-        });
-        mEarnings.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Earnings", Toast.LENGTH_SHORT).show();
-        });
-        mMyProfile.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-        });
-        mPayments.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Payments", Toast.LENGTH_SHORT).show();
-        });
         mSettings.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("new fragment")
+                    .replace(R.id.frameLayout, new SettingsFragment()).commit();
         });
+
+        mShare.setOnClickListener(v -> {
+            Toast.makeText(requireActivity().getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
+        });
+
         mRate.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Rate App", Toast.LENGTH_SHORT).show();
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("new fragment")
+                    .replace(R.id.frameLayout, new RatingFragment()).commit();
         });
+
         mSupport.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Support", Toast.LENGTH_SHORT).show();
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("fragment")
+                    .replace(R.id.frameLayout, new SupportFragment()).commit();
         });
-        mLogout.setOnClickListener(v -> {
-            //Toast.makeText(requireActivity().getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
+
+        mLogout.setOnClickListener(v -> {//Toast.makeText(requireActivity().getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
             mAuth.signOut();
             Intent intent = new Intent(requireActivity().getApplicationContext(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
-
 
         FirebaseFirestore.getInstance().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).

@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fyp.CreateJob;
+import com.example.fyp.Models.CreateJob;
 import com.example.fyp.R;
 
 import java.util.ArrayList;

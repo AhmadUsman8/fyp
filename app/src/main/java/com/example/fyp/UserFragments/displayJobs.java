@@ -1,6 +1,5 @@
 package com.example.fyp.UserFragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fyp.Adapters.GigAdapter;
-import com.example.fyp.CreateJob;
-import com.example.fyp.Dashboards.SellerDashboard;
+import com.example.fyp.Models.CreateJob;
 import com.example.fyp.R;
-import com.example.fyp.SignUp.LoginActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -97,7 +94,6 @@ public class displayJobs extends Fragment {
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .addToBackStack("randomName")
                     .replace(R.id.frameLayout, new JobsFragment()).commit();
-            //mCreate.hide();
         });
 
     }

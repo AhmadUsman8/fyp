@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/bg_btn.xml" value="0.11944444444444445" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/border.xml" value="0.18611111111111112" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/gig_layout_bg.xml" value="0.19743589743589743" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.19743589743589743" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/ic_splash.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/rounded_border_edittext.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/rounded_corners.xml" value="0.19743589743589743" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/switch_thumb.xml" value="0.1787037037037037" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/drawable/switch_track.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/font/coustard.xml" value="0.2101851851851852" />
@@ -30,11 +32,15 @@
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_inbox.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_manage_jobs.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_seller_profile.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_settings.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_support.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_home.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_inbox.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_jobs.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_profile.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_rating.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_search.xml" value="0.184375" />
+        <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/fragment_user_support.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/item_gig_layout.xml" value="0.184375" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/rounded_border_edittext.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/DELL/fyp/app/src/main/res/layout/seller_bottom_navbar.xml" value="0.184375" />

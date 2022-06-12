@@ -1,4 +1,4 @@
-package com.example.fyp;
+package com.example.fyp.Models;
 
 import java.io.Serializable;
 
