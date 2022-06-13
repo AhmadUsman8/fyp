@@ -14,8 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fyp.Dashboards.SellerDashboard;
+import com.example.fyp.Models.UserData;
 import com.example.fyp.R;
 import com.example.fyp.Dashboards.UserDashboard;
+import com.example.fyp.Utilities.Constants;
+import com.example.fyp.Utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     FirebaseAuth mAuth;
     FirebaseFirestore fstore;
+
+    PreferenceManager preferenceManager;
+
 
     @Override
     protected void onStart() {
@@ -51,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.inputPassword);
         mAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
+        preferenceManager=new PreferenceManager(this.getApplicationContext());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +141,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserData userData = documentSnapshot.toObject(UserData.class);
+
+                preferenceManager.putString(Constants.KEY_USER_ID,userData.getId());
+                preferenceManager.putString(Constants.KEY_USER_NAME,userData.getFname()+" "+userData.getLname());
+                preferenceManager.putString(Constants.KEY_USER_EMAIL,userData.getEmail());
+
                 if (userData.getType().equals("user")) {
+                    preferenceManager.putBoolean(Constants.KEY_IS_WORKER,false);
                     Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
+                    preferenceManager.putBoolean(Constants.KEY_IS_WORKER,true);
+                    preferenceManager.putString(Constants.KEY_SERVICE, (String) documentSnapshot.get("service"));
                     Intent intent = new Intent(LoginActivity.this, SellerDashboard.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

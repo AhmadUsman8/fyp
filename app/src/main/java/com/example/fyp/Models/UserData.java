@@ -1,17 +1,26 @@
-package com.example.fyp.SignUp;
+package com.example.fyp.Models;
 
 
 import java.io.Serializable;
 
 public class UserData implements Serializable {
-    private String fname,lname,email,type="user";
+    private String id,fname,lname,email,type="user";
 
     public UserData(){}
 
-    public UserData(String fname, String lname, String email) {
+    public UserData(String id,String fname, String lname, String email) {
+        this.id=id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getType() {

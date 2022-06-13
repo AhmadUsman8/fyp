@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fyp.Models.UserData;
 import com.example.fyp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,9 +26,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAcc;
@@ -165,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             userID = mAuth.getCurrentUser().getUid();
-                            UserData userData=new UserData(fname,lname,email);
+                            UserData userData=new UserData(userID,fname,lname,email);
                             fstore.collection("users")
                                     .document(userID).set(userData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {

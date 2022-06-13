@@ -29,4 +29,5 @@
     <string name="support">Briefly explain, how we can help and support you!</string>
     <string name="feedback">Your valuable feedback here</string>
     <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
 </resources>

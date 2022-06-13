@@ -13,10 +13,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fyp.Common.RatingFragment;
+import com.example.fyp.Common.SupportFragment;
 import com.example.fyp.R;
-import com.example.fyp.SettingsFragment;
+import com.example.fyp.Common.SettingsFragment;
 import com.example.fyp.SignUp.LoginActivity;
-import com.example.fyp.SignUp.UserData;
+import com.example.fyp.Models.UserData;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;

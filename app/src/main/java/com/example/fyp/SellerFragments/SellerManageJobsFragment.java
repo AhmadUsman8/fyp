@@ -2,13 +2,27 @@ package com.example.fyp.SellerFragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fyp.Adapters.GigAdapter;
+import com.example.fyp.Models.CreateJob;
 import com.example.fyp.R;
+import com.example.fyp.Utilities.Constants;
+import com.example.fyp.Utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +30,13 @@ import com.example.fyp.R;
  * create an instance of this fragment.
  */
 public class SellerManageJobsFragment extends Fragment {
+
+    RecyclerView recyclerView;
+    GigAdapter gigAdapter;
+    ArrayList<CreateJob> jobArrayList = new ArrayList<>();
+    FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    PreferenceManager preferenceManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +83,31 @@ public class SellerManageJobsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_seller_manage_jobs, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.recyclerview);
+        gigAdapter = new GigAdapter(jobArrayList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerView.setAdapter(gigAdapter);
+        preferenceManager=new PreferenceManager(getActivity().getApplicationContext());
+        loadJobs();
+    }
+
+    public void loadJobs() {
+        this.jobArrayList.clear();
+        fstore.collection("jobs").whereEqualTo("service",preferenceManager.getString(Constants.KEY_SERVICE)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                        CreateJob job = queryDocumentSnapshots.getDocuments().get(i).toObject(CreateJob.class);
+                        jobArrayList.add(job);
+                        gigAdapter.notifyItemInserted(jobArrayList.size() - 1);
+                }
+            }
+        });
     }
 }

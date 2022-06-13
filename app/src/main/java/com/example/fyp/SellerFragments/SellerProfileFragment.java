@@ -5,32 +5,24 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fyp.Dashboards.SellerDashboard;
-import com.example.fyp.Dashboards.UserDashboard;
 import com.example.fyp.R;
-import com.example.fyp.SettingsFragment;
+import com.example.fyp.Common.SettingsFragment;
 import com.example.fyp.SignUp.LoginActivity;
-import com.example.fyp.SignUp.UserData;
-import com.example.fyp.SignUp.WorkerData;
-import com.example.fyp.UserFragments.RatingFragment;
-import com.example.fyp.UserFragments.RatingFragment;
-import com.example.fyp.UserFragments.SupportFragment;
+import com.example.fyp.Models.WorkerData;
+import com.example.fyp.Common.RatingFragment;
+import com.example.fyp.Common.SupportFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.

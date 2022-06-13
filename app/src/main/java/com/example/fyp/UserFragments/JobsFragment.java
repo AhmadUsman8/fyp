@@ -30,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class JobsFragment extends Fragment {
 
-    EditText mTitle, mDescription, mBudget, mTime;
+    EditText mTitle, mDescription, mBudget, mTime, mService;
     Button mCreateJob;
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
@@ -92,6 +92,7 @@ public class JobsFragment extends Fragment {
         mBudget = view.findViewById(R.id.budget);
         mTime=view.findViewById(R.id.time);
         mCreateJob = view.findViewById(R.id.createJob);
+        mService= view.findViewById(R.id.service);
 
         mCreateJob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,12 +123,17 @@ public class JobsFragment extends Fragment {
             mTime.requestFocus();
             return;
         }
+        if (mService.getText().toString().trim().isEmpty()) {
+            mService.setError("Please enter service");
+            mService.requestFocus();
+            return;
+        }
 
         final ProgressDialog progressDialog = new ProgressDialog(this.getContext());
         progressDialog.setMessage("Processing...");
         progressDialog.show();
 
-        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim());
+        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim(),mService.getText().toString().trim());
 
         fstore.collection("jobs").add(job).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

@@ -1,4 +1,4 @@
-package com.example.fyp;
+package com.example.fyp.Common;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -8,28 +8,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
-import android.view.FocusFinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.Toast;
 
-import com.example.fyp.SignUp.RegisterActivity;
-import com.example.fyp.SignUp.UserData;
+import com.example.fyp.R;
+import com.example.fyp.Models.UserData;
 import com.example.fyp.UserFragments.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class SettingsFragment extends Fragment {
 
-    EditText mPassword, mConfirmPassword;
+    EditText mOldPassword,mPassword, mConfirmPassword;
     Button mUpdate, mCancel;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public static final String TAG = "TAG";
@@ -95,6 +91,7 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mOldPassword=view.findViewById(R.id.oldPassword);
         mPassword = view.findViewById(R.id.updatePassword);
         mConfirmPassword = view.findViewById(R.id.confirmUpdatedPassword);
         mUpdate = view.findViewById(R.id.updateButton);
@@ -114,9 +111,20 @@ public class SettingsFragment extends Fragment {
     }
 
     private void updateFunc() {
-        String password = mPassword.getText().toString().trim();
-        String conpassword = mConfirmPassword.getText().toString().trim();
+        String oldpassword = mOldPassword.getText().toString();
+        String password = mPassword.getText().toString();
+        String conpassword = mConfirmPassword.getText().toString();
 
+        if (oldpassword.isEmpty()) {
+            mOldPassword.setError("Can't be empty");
+            mOldPassword.requestFocus();
+            return;
+        }
+        if (oldpassword.length() < 6) {
+            mOldPassword.setError("At least 6 characters long");
+            mOldPassword.requestFocus();
+            return;
+        }
         if (password.isEmpty()) {
             mPassword.setError("At least 6 characters long");
             mPassword.requestFocus();
@@ -137,24 +145,29 @@ public class SettingsFragment extends Fragment {
         progressDialog.setMessage("Processing...");
         progressDialog.show();
 
-//        UserData userData=new UserData();
-//        AuthCredential credential = EmailAuthProvider.getCredential(userData.getEmail(), "");
-//        mUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()) {
-//                    mUser.updatePassword(conpassword).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()) {
-//                                Log.d(TAG, "Password updated");
-//                            } else {
-//                                Log.d(TAG, "Error password not updated");
-//                            }
-//                        }
-//                    });
-//                }
-//            }
-//        });
+
+        AuthCredential credential = EmailAuthProvider.getCredential(Objects.requireNonNull(mAuth.getCurrentUser().getEmail()), oldpassword);
+        mUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    mUser.updatePassword(conpassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                progressDialog.dismiss();
+                                Toast.makeText(getContext().getApplicationContext(),"Password Updated",Toast.LENGTH_SHORT).show();
+                                SettingsFragment.this.getActivity().getSupportFragmentManager().popBackStackImmediate();
+                                Log.d(TAG, "Password updated");
+                            } else {
+                                Log.d(TAG, "Error password not updated");
+                                Toast.makeText(getContext().getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 }

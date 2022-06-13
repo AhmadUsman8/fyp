@@ -4,30 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/postjob"
-    tools:context=".UserFragments.JobsFragment">
+    tools:context=".UserFragments.JobsFragment"
+    android:padding="10dp">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:gravity="center"-->
-<!--        android:text="No jobs yet"-->
-<!--        android:textSize="30sp"-->
-<!--        android:textStyle="italic" />-->
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="No jobs yet"-->
+    <!--        android:textSize="30sp"-->
+    <!--        android:textStyle="italic" />-->
 
-<!--    <TextView-->
-<!--        android:layout_width="91dp"-->
-<!--        android:layout_height="85dp"-->
-<!--        android:layout_marginTop="210dp"-->
-<!--        android:layout_marginLeft="160dp"-->
-<!--        android:background="@drawable/ic_baseline_jobs" />-->
+    <!--    <TextView-->
+    <!--        android:layout_width="91dp"-->
+    <!--        android:layout_height="85dp"-->
+    <!--        android:layout_marginTop="210dp"-->
+    <!--        android:layout_marginLeft="160dp"-->
+    <!--        android:background="@drawable/ic_baseline_jobs" />-->
 
     <EditText
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title"
         android:layout_marginTop="20dp"
         android:background="@drawable/border"
-        android:hint="@string/enter_job_title"/>
+        android:hint="@string/enter_job_title"
+        android:paddingStart="5dp"
+        android:minHeight="48dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -35,6 +38,7 @@
         android:id="@+id/description"
         android:layout_marginTop="65dp"
         android:background="@drawable/border"
+        android:paddingStart="5dp"
         android:hint="@string/description"/>
 
 
@@ -42,25 +46,37 @@
         android:id="@+id/budget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="320dp"
         android:background="@drawable/border"
-        android:hint="@string/budget" />
+        android:hint="@string/budget"
+        android:paddingStart="5dp"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="410dp"
+        android:layout_marginTop="360dp"
         android:background="@drawable/border"
-        android:hint="@string/time" />
+        android:paddingStart="5dp"
+        android:hint="@string/time"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="410dp"
+        android:paddingStart="5dp"
+        android:background="@drawable/border"
+        android:hint="Service" />
 
     <Button
         android:id="@+id/createJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="510dp"
-        android:layout_marginEnd="90dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="460dp"
         android:backgroundTint="#A00000"
         android:hint="@string/create_job"
         android:textSize="18sp" />

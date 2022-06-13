@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fyp.Models.WorkerData;
 import com.example.fyp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,9 +26,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterSP extends AppCompatActivity {
     TextView alreadyHaveAcc;
@@ -160,7 +158,7 @@ public class RegisterSP extends AppCompatActivity {
 
                             Toast.makeText(RegisterSP.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             serviceProviderID = mAuth.getCurrentUser().getUid();
-                            WorkerData workerData = new WorkerData(mName, null, email, phone);
+                            WorkerData workerData = new WorkerData(serviceProviderID,mName, null, email, phone, mService);
                             fstore.collection("users")
                                     .document(serviceProviderID).set(workerData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
