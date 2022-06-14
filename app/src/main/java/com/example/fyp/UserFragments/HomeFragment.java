@@ -99,35 +99,60 @@ public class HomeFragment extends Fragment {
                     .replace(R.id.frameLayout, ShowWorker.newInstance("Electrician"))
                     .addToBackStack("main")
                     .commit();
-
-            //Toast.makeText(requireActivity().getApplicationContext(), "Electrician", Toast.LENGTH_SHORT).show();
         });
         mMechanic.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Mechanic", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Mechanic"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mCarWash.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Car Wash", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Car Wash"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mCleaning.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Cleaning", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Cleaning"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mDesign.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Design", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Design"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mHomeRepair.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Home repair", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Home repair"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mLaundry.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Laundry", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Laundry"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mConstruction.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Construction", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Construction"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mPainter.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Painter", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Painter"))
+                    .addToBackStack("main")
+                    .commit();
         });
         mCarpenter.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Carpenter", Toast.LENGTH_SHORT).show();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Carpenter"))
+                    .addToBackStack("main")
+                    .commit();
         });
     }
 }
