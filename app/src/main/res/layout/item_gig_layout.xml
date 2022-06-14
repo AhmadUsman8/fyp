@@ -65,5 +65,20 @@
             android:layout_marginTop="165dp"
             android:hint="3 hrs" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:drawableLeftCompat="@drawable/ic_baseline_miscellaneous_services_24"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="200dp" />
+
+        <TextView
+            android:id="@+id/textService"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="200dp"
+            android:hint="Service" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

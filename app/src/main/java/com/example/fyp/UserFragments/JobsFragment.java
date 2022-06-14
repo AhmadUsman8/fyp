@@ -5,13 +5,17 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.fyp.Models.CreateJob;
@@ -28,9 +32,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * Use the {@link JobsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class JobsFragment extends Fragment {
+public class JobsFragment extends Fragment{
 
-    EditText mTitle, mDescription, mBudget, mTime, mService;
+    EditText mTitle, mDescription, mBudget, mTime;
+    Spinner mService;
+    String[] list = { "Electrician", "Mechanic",
+            "Car Wash", "Cleaning", "Design", "Home repair",
+            "Laundry", "Construction", "Painter", "Carpenter", "Other"};
     Button mCreateJob;
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
@@ -92,7 +100,13 @@ public class JobsFragment extends Fragment {
         mBudget = view.findViewById(R.id.budget);
         mTime=view.findViewById(R.id.time);
         mCreateJob = view.findViewById(R.id.createJob);
-        mService= view.findViewById(R.id.service);
+        mService = view.findViewById(R.id.service);
+
+        ArrayAdapter ad = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list);
+
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mService.setAdapter(ad);
 
         mCreateJob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,17 +137,12 @@ public class JobsFragment extends Fragment {
             mTime.requestFocus();
             return;
         }
-        if (mService.getText().toString().trim().isEmpty()) {
-            mService.setError("Please enter service");
-            mService.requestFocus();
-            return;
-        }
 
         final ProgressDialog progressDialog = new ProgressDialog(this.getContext());
         progressDialog.setMessage("Processing...");
         progressDialog.show();
 
-        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim(),mService.getText().toString().trim());
+        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim(),(String) mService.getSelectedItem());
 
         fstore.collection("jobs").add(job).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -152,5 +161,4 @@ public class JobsFragment extends Fragment {
         });
 
     }
-
 }

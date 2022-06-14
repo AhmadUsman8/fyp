@@ -62,11 +62,12 @@
         android:hint="@string/time"
         android:minHeight="48dp" />
 
-    <EditText
+    <Spinner
         android:id="@+id/service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="410dp"
+        android:minHeight="35dp"
         android:paddingStart="5dp"
         android:background="@drawable/border"
         android:hint="Service" />

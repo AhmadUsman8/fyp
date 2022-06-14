@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +30,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class RegisterSP extends AppCompatActivity {
+public class RegisterSP extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView alreadyHaveAcc;
     Button btnRegister;
-    private EditText name, service, inputEmail, phoneNo, inputPassword, confirmPassword;
+    private EditText name, inputEmail, phoneNo, inputPassword, confirmPassword;
+    Spinner service;
+    String[] list = { "Electrician", "Mechanic",
+            "Car Wash", "Cleaning", "Design", "Home repair",
+            "Laundry", "Construction", "Painter", "Carpenter", "Other"};
     FirebaseAuth mAuth;
 
     public static final String TAG = "TAG";
@@ -45,11 +52,20 @@ public class RegisterSP extends AppCompatActivity {
         alreadyHaveAcc = (TextView) findViewById(R.id.alreadyHaveAccount);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         name = (EditText) findViewById(R.id.name);
-        service = (EditText) findViewById(R.id.services);
+        service = (Spinner) findViewById(R.id.services);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         phoneNo = (EditText) findViewById(R.id.inputPhoneNo);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
         confirmPassword = (EditText) findViewById(R.id.confirmPassword);
+
+        service.setOnItemSelectedListener(this);
+
+        ArrayAdapter ad = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, list);
+
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        service.setAdapter(ad);
 
         mAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -75,7 +91,6 @@ public class RegisterSP extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void registerServiceProvider() {
         String mName = name.getText().toString().trim();
-        String mService = service.getText().toString().trim();
         String email = inputEmail.getText().toString().trim();
         String phone = phoneNo.getText().toString().trim();
         String password = inputPassword.getText().toString().trim();
@@ -84,11 +99,6 @@ public class RegisterSP extends AppCompatActivity {
         if (mName.isEmpty()) {
             name.setError("Please enter name");
             name.requestFocus();
-            return;
-        }
-        if (mService.isEmpty()) {
-            service.setError("Please enter service name");
-            service.requestFocus();
             return;
         }
         if (email.isEmpty()) {
@@ -158,7 +168,7 @@ public class RegisterSP extends AppCompatActivity {
 
                             Toast.makeText(RegisterSP.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             serviceProviderID = mAuth.getCurrentUser().getUid();
-                            WorkerData workerData = new WorkerData(serviceProviderID,mName, null, email, phone, mService);
+                            WorkerData workerData = new WorkerData(serviceProviderID,mName, null, email, phone, (String) service.getSelectedItem());
                             fstore.collection("users")
                                     .document(serviceProviderID).set(workerData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -182,5 +192,13 @@ public class RegisterSP extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }
