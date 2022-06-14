@@ -41,8 +41,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (mAuth.getCurrentUser() != null)
-            checkAndLogin();
+        preferenceManager = new PreferenceManager(this.getApplicationContext());
+        if (preferenceManager.getString(Constants.KEY_USER_ID) != null)
+//        if (mAuth.getCurrentUser() != null)
+//            checkAndLogin();
+            checkAndLogin2();
     }
 
     @Override
@@ -57,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.inputPassword);
         mAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
-        preferenceManager=new PreferenceManager(this.getApplicationContext());
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,17 +145,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserData userData = documentSnapshot.toObject(UserData.class);
 
-                preferenceManager.putString(Constants.KEY_USER_ID,userData.getId());
-                preferenceManager.putString(Constants.KEY_USER_NAME,userData.getFname()+" "+userData.getLname());
-                preferenceManager.putString(Constants.KEY_USER_EMAIL,userData.getEmail());
+                preferenceManager.putString(Constants.KEY_USER_ID, userData.getId());
+                preferenceManager.putString(Constants.KEY_USER_NAME, userData.getFname() + " " + userData.getLname());
+                preferenceManager.putString(Constants.KEY_USER_EMAIL, userData.getEmail());
 
                 if (userData.getType().equals("user")) {
-                    preferenceManager.putBoolean(Constants.KEY_IS_WORKER,false);
+                    preferenceManager.putBoolean(Constants.KEY_IS_WORKER, false);
                     Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
-                    preferenceManager.putBoolean(Constants.KEY_IS_WORKER,true);
+                    preferenceManager.putBoolean(Constants.KEY_IS_WORKER, true);
                     preferenceManager.putString(Constants.KEY_SERVICE, (String) documentSnapshot.get("service"));
                     Intent intent = new Intent(LoginActivity.this, SellerDashboard.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -160,5 +163,31 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+    }
+
+    private void checkAndLogin2() {
+////        fstore.collection("users")
+////                .document(mAuth.getCurrentUser().getUid()).
+////                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+////            @Override
+////            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                UserData userData = documentSnapshot.toObject(UserData.class);
+
+//                preferenceManager.putString(Constants.KEY_USER_ID, userData.getId());
+//                preferenceManager.putString(Constants.KEY_USER_NAME, userData.getFname() + " " + userData.getLname());
+//                preferenceManager.putString(Constants.KEY_USER_EMAIL, userData.getEmail());
+
+        if (!preferenceManager.getBoolean(Constants.KEY_IS_WORKER)) {
+            Intent intent = new Intent(LoginActivity.this, UserDashboard.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(LoginActivity.this, SellerDashboard.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 }
+

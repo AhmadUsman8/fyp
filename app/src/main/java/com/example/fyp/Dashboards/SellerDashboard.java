@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fyp.Chat.ChatMainActivity;
 import com.example.fyp.R;
 import com.example.fyp.SellerFragments.SellerHomeFragment;
 import com.example.fyp.SellerFragments.SellerInboxFragment;
@@ -47,7 +48,7 @@ public class SellerDashboard extends AppCompatActivity {
                     replaceFragment(new SellerHomeFragment());
                     break;
                 case R.id.user_inbox:
-                    replaceFragment(new SellerInboxFragment());
+                    replaceFragment(new ChatMainActivity());
                     break;
                 case R.id.user_jobs:
                     replaceFragment(new SellerManageJobsFragment());

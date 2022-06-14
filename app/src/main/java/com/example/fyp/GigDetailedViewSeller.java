@@ -13,29 +13,29 @@ import android.view.ViewGroup;
 import com.example.fyp.Chat.ChatActivity;
 import com.example.fyp.Models.CreateJob;
 import com.example.fyp.Models.UserData;
-import com.example.fyp.databinding.FragmentGigDetailedViewBinding;
 import com.example.fyp.Utilities.Constants;
+import com.example.fyp.databinding.FragmentGigDetailedViewSellerBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class GigDetailedView extends BottomSheetDialogFragment {
+public class GigDetailedViewSeller extends BottomSheetDialogFragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "gig";
 
 
     private CreateJob createJob;
-    private FragmentGigDetailedViewBinding binding;
+    private FragmentGigDetailedViewSellerBinding binding;
 
-    public GigDetailedView() {
+    public GigDetailedViewSeller() {
         // Required empty public constructor
     }
 
-    public static GigDetailedView newInstance(CreateJob cjob) {
-        GigDetailedView fragment = new GigDetailedView();
+    public static GigDetailedViewSeller newInstance(CreateJob cjob) {
+        GigDetailedViewSeller fragment = new GigDetailedViewSeller();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, cjob);
 
@@ -55,18 +55,19 @@ public class GigDetailedView extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gig_detailed_view, container, false);
+        return inflater.inflate(R.layout.fragment_gig_detailed_view_seller, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding=FragmentGigDetailedViewBinding.bind(requireView());
+        binding=FragmentGigDetailedViewSellerBinding.bind(requireView());
 
         binding.Title.setText(createJob.getTitle());
         binding.Description.setText(createJob.getDescription());
         binding.Budget.setText(createJob.getBudget());
         binding.Time.setText(createJob.getTime());
+        binding.Service.setText(createJob.getService());
 
         binding.chatButton.setOnClickListener(new View.OnClickListener() {
             @Override

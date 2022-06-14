@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="8dp"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="8dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gig_layout_bg"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Worker Name"
+            android:paddingLeft="4dp"
+            android:textColor="@color/my_red"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textPhone"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="50dp"
+            android:hint="Phone"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:paddingLeft="5dp"
+            app:drawableLeftCompat="@drawable/ic_baseline_design_services_24" />
+
+        <TextView
+            android:id="@+id/textService"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="130dp"
+            android:hint="Service" />
+
+        <Button
+            android:id="@+id/chatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textPhone"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="279dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="26dp"
+            android:text="Chat" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

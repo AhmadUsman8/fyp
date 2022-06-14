@@ -141,10 +141,26 @@ public class JobsFragment extends Fragment{
         final ProgressDialog progressDialog = new ProgressDialog(this.getContext());
         progressDialog.setMessage("Processing...");
         progressDialog.show();
+        String jobId = fstore.collection("jobs").document().getId();
+        CreateJob job = new CreateJob(jobId,mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim(),(String) mService.getSelectedItem());
 
-        CreateJob job = new CreateJob(mUser.getUid(), mTitle.getText().toString().trim(), mDescription.getText().toString().trim(), mBudget.getText().toString().trim(),mTime.getText().toString().trim(),(String) mService.getSelectedItem());
-
-        fstore.collection("jobs").add(job).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        fstore.collection("jobs").document(jobId).set(job)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(requireActivity().getApplicationContext(), "Job Posted", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        JobsFragment.this.getActivity().getSupportFragmentManager().popBackStackImmediate();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
+                /*.addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(requireActivity().getApplicationContext(), "Job Posted", Toast.LENGTH_SHORT).show();
@@ -158,7 +174,7 @@ public class JobsFragment extends Fragment{
                 Toast.makeText(requireActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
-        });
+        });*/
 
     }
 }

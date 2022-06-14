@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fyp.Chat.ChatMainActivity;
 import com.example.fyp.R;
 import com.example.fyp.SignUp.LoginActivity;
 import com.example.fyp.UserFragments.HomeFragment;
@@ -49,7 +50,7 @@ public class UserDashboard extends AppCompatActivity {
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.user_inbox:
-                    replaceFragment(new InboxFragment());
+                    replaceFragment(new ChatMainActivity());
                     break;
                 case R.id.user_search:
                     replaceFragment(new SearchFragment());

@@ -23,11 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Chat.ChatActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".Chat.ChatMainActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".Chat.ChatActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".Dashboards.SellerDashboard"
             android:exported="true" />

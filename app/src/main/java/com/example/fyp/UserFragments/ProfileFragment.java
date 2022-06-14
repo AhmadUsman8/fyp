@@ -19,6 +19,8 @@ import com.example.fyp.R;
 import com.example.fyp.Common.SettingsFragment;
 import com.example.fyp.SignUp.LoginActivity;
 import com.example.fyp.Models.UserData;
+import com.example.fyp.Utilities.Constants;
+import com.example.fyp.Utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,6 +30,7 @@ public class ProfileFragment extends Fragment {
     TextView mSettings, mShare, mRate, mSupport;
     TextView mLogout, mFullName, mDisplayEmail;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    PreferenceManager preferenceManager;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -51,7 +54,7 @@ public class ProfileFragment extends Fragment {
         mRate = view.findViewById(R.id.rate);
         mSupport = view.findViewById(R.id.support);
         mLogout = view.findViewById(R.id.logout);
-
+        preferenceManager=new PreferenceManager(requireContext().getApplicationContext());
         mSettings.setOnClickListener(v -> {
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .addToBackStack("fragment")
@@ -73,6 +76,7 @@ public class ProfileFragment extends Fragment {
             //Toast.makeText(requireActivity().getApplicationContext(), "Support", Toast.LENGTH_SHORT).show();
         });
         mLogout.setOnClickListener(v -> {
+            preferenceManager.clear();
             //Toast.makeText(requireActivity().getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
             mAuth.signOut();
             Intent intent = new Intent(requireActivity().getApplicationContext(), LoginActivity.class);
@@ -80,15 +84,19 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
 
-        FirebaseFirestore.getInstance().collection("users")
-                .document(mAuth.getCurrentUser().getUid()).
-                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                UserData userData = documentSnapshot.toObject(UserData.class);
-                mFullName.setText(userData.getFname() + " " + userData.getLname());
-                mDisplayEmail.setText(userData.getEmail());
-            }
-        });
+//        FirebaseFirestore.getInstance().collection("users")
+//                .document(mAuth.getCurrentUser().getUid()).
+//                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                UserData userData = documentSnapshot.toObject(UserData.class);
+//                mFullName.setText(userData.getFname() + " " + userData.getLname());
+//                mDisplayEmail.setText(userData.getEmail());
+//            }
+//        });
+
+        mFullName.setText(preferenceManager.getString(Constants.KEY_USER_NAME));
+        mDisplayEmail.setText(preferenceManager.getString(Constants.KEY_USER_EMAIL));
+
     }
 }

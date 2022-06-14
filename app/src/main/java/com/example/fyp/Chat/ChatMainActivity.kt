@@ -2,7 +2,11 @@ package com.example.fyp.Chat
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fyp.Adapters.RecentChatAdapter
 import com.example.fyp.R
@@ -15,25 +19,31 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
-class ChatMainActivity : AppCompatActivity() {
+class ChatMainActivity : Fragment() {
     private lateinit var binding: ActivityChatMainBinding
     private lateinit var preferenceManager: PreferenceManager
     private val recentChatList = mutableListOf<RecentChatMessage>()
     private lateinit var recentChatAdapter: RecentChatAdapter
     private val db = FirebaseFirestore.getInstance()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_main)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.activity_chat_main, container, false)
+    }
 
-        binding = ActivityChatMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        preferenceManager = PreferenceManager(applicationContext)
+        binding = ActivityChatMainBinding.bind(requireView())
+
+        preferenceManager = PreferenceManager(requireContext().applicationContext)
         recentChatAdapter =
             RecentChatAdapter(recentChatList, preferenceManager.getString(Constants.KEY_USER_ID)!!)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         binding.recyclerView.adapter = recentChatAdapter
 
         setListeners()
@@ -41,7 +51,7 @@ class ChatMainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        binding.arrowBack.setOnClickListener { onBackPressed() }
+        //binding.arrowBack.setOnClickListener { onBackPressed() }
     }
 
     private fun loadRecentChats() {

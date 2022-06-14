@@ -3,13 +3,13 @@ package com.example.fyp.Models;
 import java.io.Serializable;
 
 public class CreateJob implements Serializable {
-    String title,description,budget,time;
+    String id,title,description,budget,time;
     String uid,service;
 
     public CreateJob(){}
 
-    public CreateJob(String uid,String title,String description, String budget,String time,String service){
-
+    public CreateJob(String id,String uid,String title,String description, String budget,String time,String service){
+        this.id=id;
         this.service=service;
         this.uid=uid;
         this.title=title;
@@ -20,6 +20,14 @@ public class CreateJob implements Serializable {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

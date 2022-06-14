@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.fyp.R;
+import com.example.fyp.ShowWorker;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +23,9 @@ import com.example.fyp.R;
  */
 public class HomeFragment extends Fragment {
     Button mButtonInvite;
-    CardView mCdv1,mCdv2,mCdv3,mCdv4,mCdv5,mCdv6,mCdv7,mCdv8,mCdv9,mCdv10;
+    CardView mElectrician, mMechanic, mCarWash, mCleaning,
+            mDesign, mHomeRepair, mLaundry,
+            mConstruction, mPainter, mCarpenter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,51 +77,56 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mButtonInvite=view.findViewById(R.id.buttonInvite);
-        mCdv1=view.findViewById(R.id.cdv1);
-        mCdv2=view.findViewById(R.id.cdv2);
-        mCdv3=view.findViewById(R.id.cdv3);
-        mCdv4=view.findViewById(R.id.cdv4);
-        mCdv5=view.findViewById(R.id.cdv5);
-        mCdv6=view.findViewById(R.id.cdv6);
-        mCdv7=view.findViewById(R.id.cdv7);
-        mCdv8=view.findViewById(R.id.cdv8);
-        mCdv9=view.findViewById(R.id.cdv9);
-        mCdv10=view.findViewById(R.id.cdv10);
+        mButtonInvite = view.findViewById(R.id.buttonInvite);
+        mElectrician = view.findViewById(R.id.cdv1);
+        mMechanic = view.findViewById(R.id.cdv2);
+        mCarWash = view.findViewById(R.id.cdv3);
+        mCleaning = view.findViewById(R.id.cdv4);
+        mDesign = view.findViewById(R.id.cdv5);
+        mHomeRepair = view.findViewById(R.id.cdv6);
+        mLaundry = view.findViewById(R.id.cdv7);
+        mConstruction = view.findViewById(R.id.cdv8);
+        mPainter = view.findViewById(R.id.cdv9);
+        mCarpenter = view.findViewById(R.id.cdv10);
 
 
-        mButtonInvite.setOnClickListener(v->{
+        mButtonInvite.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Stay tuned!", Toast.LENGTH_SHORT).show();
         });
 
-        mCdv1.setOnClickListener(v->{
-            Toast.makeText(requireActivity().getApplicationContext(), "Electrician", Toast.LENGTH_SHORT).show();
+        mElectrician.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, ShowWorker.newInstance("Electrician"))
+                    .addToBackStack("main")
+                    .commit();
+
+            //Toast.makeText(requireActivity().getApplicationContext(), "Electrician", Toast.LENGTH_SHORT).show();
         });
-        mCdv2.setOnClickListener(v->{
+        mMechanic.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Mechanic", Toast.LENGTH_SHORT).show();
         });
-        mCdv3.setOnClickListener(v->{
+        mCarWash.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Car Wash", Toast.LENGTH_SHORT).show();
         });
-        mCdv4.setOnClickListener(v->{
+        mCleaning.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Cleaning", Toast.LENGTH_SHORT).show();
         });
-        mCdv5.setOnClickListener(v->{
+        mDesign.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Design", Toast.LENGTH_SHORT).show();
         });
-        mCdv6.setOnClickListener(v->{
+        mHomeRepair.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Home repair", Toast.LENGTH_SHORT).show();
         });
-        mCdv7.setOnClickListener(v->{
+        mLaundry.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Laundry", Toast.LENGTH_SHORT).show();
         });
-        mCdv8.setOnClickListener(v->{
+        mConstruction.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Construction", Toast.LENGTH_SHORT).show();
         });
-        mCdv9.setOnClickListener(v->{
+        mPainter.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Painter", Toast.LENGTH_SHORT).show();
         });
-        mCdv10.setOnClickListener(v->{
+        mCarpenter.setOnClickListener(v -> {
             Toast.makeText(requireActivity().getApplicationContext(), "Carpenter", Toast.LENGTH_SHORT).show();
         });
     }
