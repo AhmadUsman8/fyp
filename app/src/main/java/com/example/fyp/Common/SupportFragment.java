@@ -33,7 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class SupportFragment extends Fragment {
 
-    EditText mSupport;
+    EditText mSubject,mSupport;
     Button mSubmit, mCancel;
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
@@ -88,6 +88,7 @@ public class SupportFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mSubject = view.findViewById(R.id.subject);
         mSupport = view.findViewById(R.id.editText);
         mSubmit = view.findViewById(R.id.submitButton);
         mCancel = view.findViewById(R.id.cancelButton);
@@ -118,7 +119,7 @@ public class SupportFragment extends Fragment {
         progressDialog.setMessage("Processing...");
         progressDialog.show();
 
-        Support query = new Support(mUser.getUid(), mSupport.getText().toString().trim());
+        Support query = new Support(mUser.getUid(),mSubject.getText().toString().trim(), mSupport.getText().toString().trim());
         fstore.collection("support").add(query).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {

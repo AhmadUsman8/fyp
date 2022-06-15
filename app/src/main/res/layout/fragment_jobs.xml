@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:padding="10dp"
         android:background="@drawable/border"
         android:hint="@string/enter_job_title"
         android:paddingStart="5dp"
@@ -38,7 +39,7 @@
         android:id="@+id/description"
         android:layout_marginTop="65dp"
         android:background="@drawable/border"
-        android:paddingStart="5dp"
+        android:padding="10dp"
         android:hint="@string/description"/>
 
 
@@ -49,7 +50,7 @@
         android:layout_marginTop="320dp"
         android:background="@drawable/border"
         android:hint="@string/budget"
-        android:paddingStart="5dp"
+        android:padding="10dp"
         android:minHeight="48dp" />
 
     <EditText
@@ -58,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"
         android:background="@drawable/border"
-        android:paddingStart="5dp"
+        android:padding="10dp"
         android:hint="@string/time"
         android:minHeight="48dp" />
 
@@ -68,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="410dp"
         android:minHeight="35dp"
-        android:paddingStart="5dp"
+        android:padding="10dp"
         android:background="@drawable/border"
         android:hint="Service" />
 

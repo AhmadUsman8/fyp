@@ -3,14 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserFragments.UserRatingFragment">
+    tools:context=".Common.RatingFragment">
 
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/coustard"
+        android:text="sC."
+        android:textColor="@color/my_red"
+        android:textSize="45sp"
+        android:textStyle="bold"/>
     <RatingBar
         android:id="@+id/appRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:rating="4.5"
         android:theme="@style/RatingBar" />
 
@@ -19,7 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="273dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="180dp"
+        android:padding="10dp"
+        android:layout_marginTop="280dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:hint="@string/feedback"
@@ -30,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="570dp"
         android:text="cancel" />
 
     <Button
@@ -38,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="570dp"
         android:layout_marginRight="10dp"
         android:text="submit" />
 

@@ -6,34 +6,24 @@
     xmlns:ndroid="http://schemas.android.com/apk/res-auto"
     tools:context=".Common.SettingsFragment">
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/updateImage"-->
-<!--        android:layout_width="61dp"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        android:src="@drawable/profile_image"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/updateUsername"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        android:layout_marginTop="196dp"-->
-<!--        android:background="@drawable/border"-->
-<!--        android:hint="Usenname"-->
-<!--        android:minHeight="48dp" />-->
-
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/coustard"
+        android:text="sC."
+        android:textColor="@color/my_red"
+        android:textSize="45sp"
+        android:textStyle="bold"/>
     <EditText
         android:id="@+id/oldPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="202dp"
+        android:padding="10dp"
         android:inputType="textPassword"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -49,6 +39,7 @@
         android:layout_marginTop="250dp"
         android:layout_marginRight="10dp"
         android:inputType="textPassword"
+        android:padding="10dp"
         android:layout_marginLeft="10dp"
         android:hint="@string/new_password"
         android:background="@drawable/border"
@@ -62,6 +53,7 @@
         android:layout_marginTop="300dp"
         android:layout_marginRight="10dp"
         android:inputType="textPassword"
+        android:padding="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/border"
         android:hint="@string/confirm_password"
@@ -83,7 +75,7 @@
         android:layout_gravity="right"
         android:layout_marginTop="450dp"
         android:layout_marginRight="20dp"
-        android:text="update" />
+        android:text="Change" />
 
 
 </FrameLayout>

@@ -12,9 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
         android:textSize="25dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingStart="5dp"
+        android:padding="15dp"
         android:textColor="@color/bg"
         android:background="@color/my_red"
         android:id="@+id/Title"/>
@@ -24,13 +22,13 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:text="@string/hello_blank_fragment"
-        android:padding="5dp"
+        android:padding="10dp"
         android:id="@+id/Description"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:padding="10dp"
         android:enabled="false"
         android:layout_marginTop="5dp"
         android:text="@string/hello_blank_fragment"
@@ -41,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/hello_blank_fragment"
-        android:padding="5dp"
+        android:padding="10dp"
         android:enabled="false"
         android:id="@+id/Time"/>
 
@@ -49,23 +47,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
-        android:padding="5dp"
+        android:padding="10dp"
         android:layout_marginTop="5dp"
         android:enabled="false"
         android:id="@+id/Service"/>
 
     <Button
         android:id="@+id/editButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Edit"/>
+        android:text="Edit" />
+
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:enabled="false"
+        android:layout_gravity="right"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:enabled="false"
         android:text="Save">
 
     </Button>
