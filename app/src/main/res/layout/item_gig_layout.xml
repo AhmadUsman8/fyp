@@ -39,8 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="130dp"
-            app:drawableLeftCompat="@drawable/ic_baseline_budget"
-            android:paddingLeft="5dp"/>
+            android:paddingLeft="5dp"
+            app:drawableLeftCompat="@drawable/ic_baseline_budget" />
 
         <TextView
             android:id="@+id/textBudget"

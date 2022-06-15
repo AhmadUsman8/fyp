@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fyp.Common.PrivacyPolicy;
 import com.example.fyp.R;
 import com.example.fyp.Common.SettingsFragment;
 import com.example.fyp.SignUp.LoginActivity;
@@ -32,7 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * create an instance of this fragment.
  */
 public class SellerProfileFragment extends Fragment {
-    TextView mShare,mSettings,mRate,mSupport;
+    TextView mPrivacyPolicy,mSettings,mRate,mSupport;
     TextView mLogout,mFullName,mDisplayEmail;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     PreferenceManager preferenceManager;
@@ -90,7 +91,7 @@ public class SellerProfileFragment extends Fragment {
 
         mFullName=view.findViewById(R.id.full_name);
         mDisplayEmail=view.findViewById(R.id.displayEmail);
-        mShare=view.findViewById(R.id.share);
+        mPrivacyPolicy=view.findViewById(R.id.privacyPolicy);
         mSettings=view.findViewById(R.id.settings);
         mRate=view.findViewById(R.id.rate);
         mSupport=view.findViewById(R.id.support);
@@ -105,8 +106,10 @@ public class SellerProfileFragment extends Fragment {
                     .replace(R.id.frameLayout, new SettingsFragment()).commit();
         });
 
-        mShare.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
+        mPrivacyPolicy.setOnClickListener(v -> {
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("fragment")
+                    .replace(R.id.frameLayout, new PrivacyPolicy()).commit();
         });
 
         mRate.setOnClickListener(v -> {

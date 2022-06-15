@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fyp.Common.PrivacyPolicy;
 import com.example.fyp.Common.RatingFragment;
 import com.example.fyp.Common.SupportFragment;
 import com.example.fyp.R;
@@ -27,7 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileFragment extends Fragment {
-    TextView mSettings, mShare, mRate, mSupport;
+    TextView mSettings, mPrivacyPolicy, mRate, mSupport;
     TextView mLogout, mFullName, mDisplayEmail;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     PreferenceManager preferenceManager;
@@ -50,7 +51,7 @@ public class ProfileFragment extends Fragment {
         mFullName = view.findViewById(R.id.full_name);
         mDisplayEmail = view.findViewById(R.id.displayEmail);
         mSettings = view.findViewById(R.id.settings);
-        mShare = view.findViewById(R.id.share);
+        mPrivacyPolicy = view.findViewById(R.id.privacyPolicy);
         mRate = view.findViewById(R.id.rate);
         mSupport = view.findViewById(R.id.support);
         mLogout = view.findViewById(R.id.logout);
@@ -59,11 +60,12 @@ public class ProfileFragment extends Fragment {
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .addToBackStack("fragment")
                     .replace(R.id.frameLayout, new SettingsFragment()).commit();
-            //Toast.makeText(requireActivity().getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
         });
-        mShare.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Share App", Toast.LENGTH_SHORT).show();
-        });
+        mPrivacyPolicy.setOnClickListener(v -> {
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("fragment")
+                    .replace(R.id.frameLayout, new PrivacyPolicy()).commit();
+         });
         mRate.setOnClickListener(v -> {
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .addToBackStack("fragment")
@@ -73,27 +75,14 @@ public class ProfileFragment extends Fragment {
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .addToBackStack("fragment")
                     .replace(R.id.frameLayout, new SupportFragment()).commit();
-            //Toast.makeText(requireActivity().getApplicationContext(), "Support", Toast.LENGTH_SHORT).show();
         });
         mLogout.setOnClickListener(v -> {
             preferenceManager.clear();
-            //Toast.makeText(requireActivity().getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
             mAuth.signOut();
             Intent intent = new Intent(requireActivity().getApplicationContext(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
-
-//        FirebaseFirestore.getInstance().collection("users")
-//                .document(mAuth.getCurrentUser().getUid()).
-//                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                UserData userData = documentSnapshot.toObject(UserData.class);
-//                mFullName.setText(userData.getFname() + " " + userData.getLname());
-//                mDisplayEmail.setText(userData.getEmail());
-//            }
-//        });
 
         mFullName.setText(preferenceManager.getString(Constants.KEY_USER_NAME));
         mDisplayEmail.setText(preferenceManager.getString(Constants.KEY_USER_EMAIL));

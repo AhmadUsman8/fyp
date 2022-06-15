@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.fyp.Chat.ChatActivity;
 import com.example.fyp.Models.CreateJob;
 import com.example.fyp.Models.UserData;
+import com.example.fyp.UserFragments.ProfileFragment;
 import com.example.fyp.Utilities.Constants;
 import com.example.fyp.databinding.FragmentGigDetailedViewUserBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -111,6 +112,44 @@ public class GigDetailedViewUser extends BottomSheetDialogFragment {
                         binding.saveButton.setEnabled(false);
                         binding.editButton.setEnabled(true);
                         Toast.makeText(requireContext().getApplicationContext(), "Job updated", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireContext().getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        binding.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore.getInstance().collection("jobs").document(createJob.getId())
+                        .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(requireContext().getApplicationContext(), "Job deleted successfully", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireContext().getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        binding.completedJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore.getInstance().collection("jobs").document(createJob.getId())
+                        .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(requireContext().getApplicationContext(), "Completed job removed", Toast.LENGTH_SHORT).show();
+                        //dismiss
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
