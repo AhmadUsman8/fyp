@@ -80,6 +80,9 @@ public class ShowWorker extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(queryDocumentSnapshots.getDocuments().size()<1){
+                            Toast.makeText(requireContext().getApplicationContext(),"No worker to show",Toast.LENGTH_SHORT).show();
+                        }
                         for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
                             workerList.add(queryDocumentSnapshots.getDocuments().get(i).toObject(WorkerData.class));
                             workerAdapter.notifyItemInserted(workerList.size() - 1);

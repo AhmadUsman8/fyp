@@ -12,6 +12,8 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="7dp"
         android:layout_marginVertical="10dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -19,6 +21,7 @@
             style="?attr/textAppearanceHeadline5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/my_red"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textStyle="bold"
