@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/postjob"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/postjob"
-    tools:context=".UserFragments.JobsFragment"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:context=".UserFragments.JobsFragment">
 
     <EditText
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:padding="10dp"
         android:background="@drawable/border"
         android:hint="@string/enter_job_title"
-        android:paddingStart="5dp"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:paddingStart="5dp" />
 
     <EditText
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:id="@+id/description"
         android:layout_marginTop="65dp"
         android:background="@drawable/border"
-        android:padding="10dp"
-        android:hint="@string/description"/>
+        android:gravity="top|start"
+        android:hint="@string/description"
+        android:padding="10dp" />
 
 
     <EditText
@@ -35,8 +36,9 @@
         android:layout_marginTop="320dp"
         android:background="@drawable/border"
         android:hint="@string/budget"
-        android:padding="10dp"
-        android:minHeight="48dp" />
+        android:inputType="numberSigned"
+        android:minHeight="48dp"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/time"
@@ -44,19 +46,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"
         android:background="@drawable/border"
-        android:padding="10dp"
         android:hint="@string/time"
-        android:minHeight="48dp" />
+        android:inputType="numberSigned"
+        android:minHeight="48dp"
+        android:padding="10dp" />
 
     <Spinner
         android:id="@+id/service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="410dp"
-        android:minHeight="35dp"
-        android:padding="10dp"
         android:background="@drawable/border"
-        android:hint="Service" />
+        android:hint="Service"
+        android:minHeight="35dp"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/createJob"

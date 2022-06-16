@@ -33,6 +33,7 @@
         android:padding="10dp"
         android:layout_marginTop="280dp"
         android:layout_marginRight="10dp"
+        android:gravity="top|start"
         android:background="@drawable/border"
         android:hint="@string/feedback"
         android:minHeight="48dp" />

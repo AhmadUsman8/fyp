@@ -137,6 +137,12 @@ public class JobsFragment extends Fragment{
             mTime.requestFocus();
             return;
         }
+        /*if (Integer.valueOf(mBudget.getText().toString().trim())<0) {
+            mBudget.setError("Please enter time");
+            mBudget.requestFocus();
+            return;
+        }*/
+
 
         final ProgressDialog progressDialog = new ProgressDialog(this.getContext());
         progressDialog.setMessage("Processing...");

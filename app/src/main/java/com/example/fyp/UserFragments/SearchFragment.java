@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fyp.R;
+import com.example.fyp.ShowWorker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,18 +44,15 @@ public class SearchFragment extends Fragment {
 
         list.add("Electrician");
         list.add("Mechanic");
-        list.add("Plumber");
-        list.add("Car detailing");
-        list.add("Consultants");
-        list.add("Blacksmith");
-        list.add("Food delivery");
-        list.add("Builder");
-        list.add("Clothing");
-        list.add("Makeup");
-        list.add("Insurance coverage");
-        list.add("Carpenter");
+        list.add("Car Wash");
+        list.add("Cleaning");
+        list.add("Design");
+        list.add("Home repait");
+        list.add("Laundry");
+        list.add("Constructor");
         list.add("Painter");
-        list.add("Interior designer");
+        list.add("Carpenter");
+        list.add("Other");
 
         Collections.sort(list);
 
@@ -72,6 +71,17 @@ public class SearchFragment extends Fragment {
                 return false;
             }
         });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, ShowWorker.newInstance(list.get(i)))
+                        .addToBackStack("main")
+                        .commit();
+            }
+        });
+
     }
 }
 
