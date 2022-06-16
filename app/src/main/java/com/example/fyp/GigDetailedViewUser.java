@@ -131,7 +131,7 @@ public class GigDetailedViewUser extends BottomSheetDialogFragment {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(requireContext().getApplicationContext(), "Job deleted successfully", Toast.LENGTH_SHORT).show();
-
+                        GigDetailedViewUser.this.dismiss();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -150,7 +150,7 @@ public class GigDetailedViewUser extends BottomSheetDialogFragment {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(requireContext().getApplicationContext(), "Completed job removed", Toast.LENGTH_SHORT).show();
-                        //GigDetailedViewUser.this.getActivity().getSupportFragmentManager().popBackStackImmediate();
+                        GigDetailedViewUser.this.dismiss();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

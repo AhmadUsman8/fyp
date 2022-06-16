@@ -1,5 +1,7 @@
 package com.example.fyp.SellerFragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,22 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.fyp.Common.InviteFragment;
 import com.example.fyp.Common.PrivacyPolicy;
 import com.example.fyp.R;
 import com.example.fyp.Common.SettingsFragment;
 import com.example.fyp.SignUp.LoginActivity;
-import com.example.fyp.Models.WorkerData;
 import com.example.fyp.Common.RatingFragment;
 import com.example.fyp.Common.SupportFragment;
 import com.example.fyp.Utilities.Constants;
 import com.example.fyp.Utilities.PreferenceManager;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -126,9 +122,23 @@ public class SellerProfileFragment extends Fragment {
                     .replace(R.id.frameLayout, new SupportFragment()).commit();
         });
         mInvite.setOnClickListener(v -> {
-            this.getActivity().getSupportFragmentManager().beginTransaction()
-                    .addToBackStack("fragment")
-                    .replace(R.id.frameLayout, new InviteFragment()).commit();
+            AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
+            dialog.setTitle("Invite Friends")
+                    .setMessage("Invite your friends to fastest way of getting things done.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .create();
+            dialog.show();
         });
 
         mLogout.setOnClickListener(v -> {

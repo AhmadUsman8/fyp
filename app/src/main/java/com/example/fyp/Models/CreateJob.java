@@ -1,21 +1,24 @@
 package com.example.fyp.Models;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 
 public class CreateJob implements Serializable {
-    String id,title,description,budget,time;
-    String uid,service;
+    String id, title, description, budget, time;
+    String uid, service;
 
-    public CreateJob(){}
+    public CreateJob() {
+    }
 
-    public CreateJob(String id,String uid,String title,String description, String budget,String time,String service){
-        this.id=id;
-        this.service=service;
-        this.uid=uid;
-        this.title=title;
-        this.description=description;
-        this.budget=budget;
-        this.time=time;
+    public CreateJob(String id, String uid, String title, String description, String budget, String time, String service) {
+        this.id = id;
+        this.service = service;
+        this.uid = uid;
+        this.title = title;
+        this.description = description;
+        this.budget = budget;
+        this.time = time;
     }
 
     public String getTitle() {
@@ -72,5 +75,14 @@ public class CreateJob implements Serializable {
 
     public void setService(String service) {
         this.service = service;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj != null && obj.getClass() == CreateJob.class) {
+            CreateJob c = (CreateJob) obj;
+            return this.id.equals(c.id);
+        }
+        return false;
     }
 }
