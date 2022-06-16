@@ -169,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="You don't have any services yet"
+            android:text="Your current service is:"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/Services"
             app:layout_constraintHorizontal_bias="0.0"
@@ -177,14 +177,14 @@
             app:layout_constraintTop_toBottomOf="@+id/Services" />
 
         <TextView
-            android:id="@+id/createNewService"
+            android:id="@+id/showService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="  Click here to create a new service"
-            android:textSize="14sp"
+            android:text="  dummy"
+            android:drawableLeft="@drawable/ic_baseline_arrow_right_24"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:drawableLeftCompat="@drawable/ic_baseline_create_24"
             app:layout_constraintEnd_toEndOf="@+id/textview10"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textview10"

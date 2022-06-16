@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fyp.Adapters.GigAdapter;
 import com.example.fyp.Models.CreateJob;
@@ -102,6 +103,9 @@ public class SellerManageJobsFragment extends Fragment {
         fstore.collection("jobs").whereEqualTo("service",preferenceManager.getString(Constants.KEY_SERVICE)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(queryDocumentSnapshots.getDocuments().size()<1){
+                    Toast.makeText(requireContext().getApplicationContext(),"No jobs related to your service",Toast.LENGTH_SHORT).show();
+                }
                 for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
                         CreateJob job = queryDocumentSnapshots.getDocuments().get(i).toObject(CreateJob.class);
                         jobArrayList.add(job);

@@ -22,7 +22,7 @@ import com.example.fyp.ShowWorker;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-    Button mButtonInvite;
+    Button mButtonPost;
     CardView mElectrician, mMechanic, mCarWash, mCleaning,
             mDesign, mHomeRepair, mLaundry,
             mConstruction, mPainter, mCarpenter;
@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mButtonInvite = view.findViewById(R.id.buttonInvite);
+        mButtonPost = view.findViewById(R.id.buttonPost);
         mElectrician = view.findViewById(R.id.cdv1);
         mMechanic = view.findViewById(R.id.cdv2);
         mCarWash = view.findViewById(R.id.cdv3);
@@ -90,8 +90,10 @@ public class HomeFragment extends Fragment {
         mCarpenter = view.findViewById(R.id.cdv10);
 
 
-        mButtonInvite.setOnClickListener(v -> {
-            Toast.makeText(requireActivity().getApplicationContext(), "Stay tuned!", Toast.LENGTH_SHORT).show();
+        mButtonPost.setOnClickListener(v -> {
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("randomName")
+                    .replace(R.id.frameLayout, new JobsFragment()).commit();
         });
 
         mElectrician.setOnClickListener(v -> {

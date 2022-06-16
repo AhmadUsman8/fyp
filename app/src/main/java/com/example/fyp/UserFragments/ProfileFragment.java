@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fyp.Common.InviteFragment;
 import com.example.fyp.Common.PrivacyPolicy;
 import com.example.fyp.Common.RatingFragment;
 import com.example.fyp.Common.SupportFragment;
@@ -28,7 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileFragment extends Fragment {
-    TextView mSettings, mPrivacyPolicy, mRate, mSupport;
+    TextView mSettings, mPrivacyPolicy, mRate, mSupport, mInvite;
     TextView mLogout, mFullName, mDisplayEmail;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     PreferenceManager preferenceManager;
@@ -54,7 +55,9 @@ public class ProfileFragment extends Fragment {
         mPrivacyPolicy = view.findViewById(R.id.privacyPolicy);
         mRate = view.findViewById(R.id.rate);
         mSupport = view.findViewById(R.id.support);
+        mInvite = view.findViewById(R.id.invite);
         mLogout = view.findViewById(R.id.logout);
+
         preferenceManager=new PreferenceManager(requireContext().getApplicationContext());
         mSettings.setOnClickListener(v -> {
             this.getActivity().getSupportFragmentManager().beginTransaction()
@@ -75,6 +78,11 @@ public class ProfileFragment extends Fragment {
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .addToBackStack("fragment")
                     .replace(R.id.frameLayout, new SupportFragment()).commit();
+        });
+        mInvite.setOnClickListener(v -> {
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("fragment")
+                    .replace(R.id.frameLayout, new InviteFragment()).commit();
         });
         mLogout.setOnClickListener(v -> {
             preferenceManager.clear();

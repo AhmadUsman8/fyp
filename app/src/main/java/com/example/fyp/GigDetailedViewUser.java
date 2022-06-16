@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.fyp.Chat.ChatActivity;
 import com.example.fyp.Models.CreateJob;
 import com.example.fyp.Models.UserData;
+import com.example.fyp.UserFragments.JobsFragment;
 import com.example.fyp.UserFragments.ProfileFragment;
 import com.example.fyp.Utilities.Constants;
 import com.example.fyp.databinding.FragmentGigDetailedViewUserBinding;
@@ -149,7 +150,7 @@ public class GigDetailedViewUser extends BottomSheetDialogFragment {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(requireContext().getApplicationContext(), "Completed job removed", Toast.LENGTH_SHORT).show();
-                        //dismiss
+                        //GigDetailedViewUser.this.getActivity().getSupportFragmentManager().popBackStackImmediate();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

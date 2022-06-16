@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fyp.Common.InviteFragment;
 import com.example.fyp.Common.PrivacyPolicy;
 import com.example.fyp.R;
 import com.example.fyp.Common.SettingsFragment;
@@ -33,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * create an instance of this fragment.
  */
 public class SellerProfileFragment extends Fragment {
-    TextView mPrivacyPolicy,mSettings,mRate,mSupport;
+    TextView mPrivacyPolicy,mSettings,mRate,mSupport,mInvite;
     TextView mLogout,mFullName,mDisplayEmail;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     PreferenceManager preferenceManager;
@@ -95,6 +96,7 @@ public class SellerProfileFragment extends Fragment {
         mSettings=view.findViewById(R.id.settings);
         mRate=view.findViewById(R.id.rate);
         mSupport=view.findViewById(R.id.support);
+        mInvite=view.findViewById(R.id.invite);
 
         preferenceManager=new PreferenceManager(requireContext().getApplicationContext());
 
@@ -123,25 +125,19 @@ public class SellerProfileFragment extends Fragment {
                     .addToBackStack("fragment")
                     .replace(R.id.frameLayout, new SupportFragment()).commit();
         });
+        mInvite.setOnClickListener(v -> {
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("fragment")
+                    .replace(R.id.frameLayout, new InviteFragment()).commit();
+        });
 
-        mLogout.setOnClickListener(v -> {//Toast.makeText(requireActivity().getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
+        mLogout.setOnClickListener(v -> {
             preferenceManager.clear();
             mAuth.signOut();
             Intent intent = new Intent(requireActivity().getApplicationContext(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
-
-//        FirebaseFirestore.getInstance().collection("users")
-//                .document(mAuth.getCurrentUser().getUid()).
-//                get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                WorkerData workerData = documentSnapshot.toObject(WorkerData.class);
-//                mFullName.setText(workerData.getFname());
-//                mDisplayEmail.setText(workerData.getEmail());
-//            }
-//        });
 
         mFullName.setText(preferenceManager.getString(Constants.KEY_USER_NAME));
         mDisplayEmail.setText(preferenceManager.getString(Constants.KEY_USER_EMAIL));
