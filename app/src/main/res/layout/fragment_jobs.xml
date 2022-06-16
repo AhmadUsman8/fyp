@@ -47,7 +47,6 @@
         android:layout_marginTop="360dp"
         android:background="@drawable/border"
         android:hint="@string/time"
-        android:inputType="numberSigned"
         android:minHeight="48dp"
         android:padding="10dp" />
 
